@@ -1,0 +1,20 @@
+.button {
+  width: 20%;
+  padding: 8px;
+  font-size: 16px;
+  line-height: 1.2em;
+  background-color: rgba(10, 242, 227, 0.5);
+  border: none;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(10, 242, 227, 1);
+    outline: none;
+  }
+
+  &:active {
+    color: rgba(10, 242, 227, 1);
+    background-color: #004746;
+    outline: none;
+  }
+}
