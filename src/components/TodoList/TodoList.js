@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 import "./TodoList.scss";
 
 const propTypes = {
-  props: PropTypes.arrayOf(PropTypes.string).isRequired,
-  map: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
-const uuidv4 = require('uuid/v4')
+const uuid = require('uuid/v4')
 
-const TodoList = ({ props }) => (
+const TodoList = ({ todos }) => (
   <ul className="todo-list">
-    {props.map((todo) => (
+    {todos.map((todo) => (
       <li
         className="todo-item"
-        id={uuidv4()}
-        key={uuidv4()}
+        id={uuid()}
+        key={uuid()}
       >
         {todo}
       </li>))}

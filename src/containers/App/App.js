@@ -38,7 +38,7 @@ class App extends Component {
           onInputChange={this.onInputChange}
         />
         <Button disabled={isBtnDisabled} onBtnClick={this.addTodo} />
-        <TodoList props={todos} />
+        <TodoList todos={todos} />
       </div>
     );
   }
