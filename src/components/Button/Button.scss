@@ -1,6 +1,6 @@
 .button {
-  width: 20%;
-  padding: 8px;
+  width: 15%;
+  padding: 13px 5px;
   font-size: 16px;
   line-height: 1.2em;
   background-color: rgba(10, 242, 227, 0.5);
@@ -14,7 +14,13 @@
 
   &:active {
     color: rgba(10, 242, 227, 1);
-    background-color: #004746;
+    background-color: #0d6967;
     outline: none;
+  }
+
+  &:disabled {
+    color: rgb(103, 103, 103);
+    background-color: rgba(10, 242, 227, 0.4);
+    cursor: not-allowed;
   }
 }

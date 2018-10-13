@@ -1,29 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import "./Input.scss";
 
-class Input extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {value: ''}
-  }
-
-  onInputChange(evt) {
-      this.setState({value: evt.target.value});
-  }
-
-  render() {
-    return (
-      <input
-        className="input"
-        type="text"
-        id="field"
-        value={this.state.value}
-        onChange={evt => this.onInputChange(evt)}
-        placeholder="what should be done"
-      />
-    );
-  }
+const propTypes = {
+  onInput: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 }
+
+const Input = ({ value, onInput, onInputChange }) => (
+
+  <input
+    className="input"
+    type="text"
+    id="field"
+    value={value}
+    onInput={onInput}
+    onChange={onInputChange}
+    placeholder="what should be done"
+  />
+)
+
+Input.propTypes = propTypes;
 
 export default Input;
