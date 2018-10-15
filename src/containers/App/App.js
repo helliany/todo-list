@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 import Button from '../../components/Button/Button';
 import Label from '../../components/Label/Label';
@@ -24,7 +25,24 @@ class App extends Component {
 
   addTodo = () => {
     const { value, todos } = this.state;
-    this.setState({ todos: [...todos, value] });
+    const todo = {
+      value,
+      id: uuid()
+    }
+    this.setState({
+      isBtnDisabled: true,
+      value: '',
+      todos: [...todos, todo]
+    });
+  }
+
+  deleteTodo = (evt) => {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.filter(todo => (
+        todo.id !== evt.target.id
+      ))
+    });
   }
 
   render() {
@@ -38,7 +56,7 @@ class App extends Component {
           onInputChange={this.onInputChange}
         />
         <Button disabled={isBtnDisabled} onBtnClick={this.addTodo} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }

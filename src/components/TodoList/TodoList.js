@@ -2,23 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import "./TodoList.scss";
+import Todo from '../Todo/Todo';
 
 const propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.string).isRequired
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteTodo: PropTypes.func.isRequired
 }
 
-const uuid = require('uuid/v4')
-
-const TodoList = ({ todos }) => (
+const TodoList = ({ todos, deleteTodo }) => (
   <ul className="todo-list">
-    {todos.map((todo) => (
-      <li
-        className="todo-item"
-        id={uuid()}
-        key={uuid()}
-      >
-        {todo}
-      </li>))}
+    <Todo todos={todos} deleteTodo={deleteTodo} />
   </ul>
 )
 
