@@ -6,10 +6,11 @@ import "./Input.scss";
 const propTypes = {
   onInput: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  onEnterPress: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired
 }
 
-const Input = ({ value, onInput, onInputChange }) => (
+const Input = ({ value, onInput, onInputChange, onEnterPress }) => (
 
   <input
     className="input"
@@ -18,6 +19,7 @@ const Input = ({ value, onInput, onInputChange }) => (
     value={value}
     onInput={onInput}
     onChange={onInputChange}
+    onKeyPress={onEnterPress}
     placeholder="what should be done"
   />
 )

@@ -9,7 +9,7 @@ const propTypes = {
 }
 
 const Todo = ({ todos, deleteTodo }) => (
-  todos.map((todo) => (
+  todos.map(todo => (
     <li
       className="todo"
       id={todo.id}
@@ -17,12 +17,18 @@ const Todo = ({ todos, deleteTodo }) => (
     >
       {todo.value}
       <button
-        className="todo-btn"
+        className="todo-btn-done"
+        id={todo.id}
+      >
+        done
+      </button> 
+      <button
+        className="todo-btn-delete"
         onClick={deleteTodo}
         id={todo.id}
       >
         delete
-      </button>
+      </button> 
     </li>
   )
   )

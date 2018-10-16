@@ -5,8 +5,9 @@ import Button from '../../components/Button/Button';
 import Label from '../../components/Label/Label';
 import Input from '../../components/Input/Input';
 import TodoList from '../../components/TodoList/TodoList';
+import Filter from '../../components/Filter/Filter';
 
-import "./App.scss";
+import './App.scss';
 
 class App extends Component {
   state = {
@@ -15,12 +16,18 @@ class App extends Component {
     todos: []
   }
 
-  onInputChange = (evt) => {
+  onInputChange = evt => {
     this.setState({ value: evt.target.value });
   }
 
-  onInput = (evt) => {
+  onInput = evt => {
     this.setState({ isBtnDisabled: !evt.target.value.length > 0 });
+  }
+
+  onEnterPress = evt => {
+    if (evt.key === 'Enter' && evt.target.value.length > 0) {
+      this.addTodo();
+    }
   }
 
   addTodo = () => {
@@ -36,7 +43,7 @@ class App extends Component {
     });
   }
 
-  deleteTodo = (evt) => {
+  deleteTodo = evt => {
     const { todos } = this.state;
     this.setState({
       todos: todos.filter(todo => (
@@ -54,8 +61,10 @@ class App extends Component {
           value={value}
           onInput={this.onInput}
           onInputChange={this.onInputChange}
+          onEnterPress={this.onEnterPress}
         />
         <Button disabled={isBtnDisabled} onBtnClick={this.addTodo} />
+        <Filter />
         <TodoList todos={todos} deleteTodo={this.deleteTodo} />
       </div>
     );

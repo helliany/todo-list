@@ -5,7 +5,10 @@ import "./TodoList.scss";
 import Todo from '../Todo/Todo';
 
 const propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string,
+    id: PropTypes.string
+  })).isRequired,
   deleteTodo: PropTypes.func.isRequired
 }
 
