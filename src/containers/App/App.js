@@ -32,10 +32,13 @@ class App extends Component {
 
   addTodo = () => {
     const { value, todos } = this.state;
+
     const todo = {
       value,
-      id: uuid()
+      id: uuid(),
+      done: false,
     }
+
     this.setState({
       isBtnDisabled: true,
       value: '',
@@ -52,6 +55,11 @@ class App extends Component {
     });
   }
 
+  doneTodo = evt => {
+    const { todos } = this.state;
+    this.setState({ todos: todos.map(todo => (todo.id === evt.target.id ? { ...todo, done: !todo.done } : todo)) });
+  }
+
   render() {
     const { isBtnDisabled, value, todos } = this.state;
     return (
@@ -65,7 +73,7 @@ class App extends Component {
         />
         <Button disabled={isBtnDisabled} onBtnClick={this.addTodo} />
         <Filter />
-        <TodoList todos={todos} deleteTodo={this.deleteTodo} />
+        <TodoList todos={todos} doneTodo={this.doneTodo} deleteTodo={this.deleteTodo} />
       </div>
     );
   }

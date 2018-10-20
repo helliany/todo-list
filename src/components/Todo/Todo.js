@@ -5,10 +5,11 @@ import "./Todo.scss";
 
 const propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  doneTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired
 }
 
-const Todo = ({ todos, deleteTodo }) => (
+const Todo = ({ todos, doneTodo, deleteTodo }) => (
   todos.map(todo => (
     <li
       className="todo"
@@ -18,17 +19,18 @@ const Todo = ({ todos, deleteTodo }) => (
       {todo.value}
       <button
         className="todo-btn-done"
+        onClick={doneTodo}
         id={todo.id}
       >
         done
-      </button> 
+      </button>
       <button
         className="todo-btn-delete"
         onClick={deleteTodo}
         id={todo.id}
       >
         delete
-      </button> 
+      </button>
     </li>
   )
   )

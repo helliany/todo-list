@@ -9,12 +9,13 @@ const propTypes = {
     value: PropTypes.string,
     id: PropTypes.string
   })).isRequired,
-  deleteTodo: PropTypes.func.isRequired
+  deleteTodo: PropTypes.func.isRequired,
+  doneTodo: PropTypes.func.isRequired,
 }
 
-const TodoList = ({ todos, deleteTodo }) => (
+const TodoList = ({ todos, doneTodo, deleteTodo }) => (
   <ul className="todo-list">
-    <Todo todos={todos} deleteTodo={deleteTodo} />
+    <Todo todos={todos} doneTodo={doneTodo} deleteTodo={deleteTodo} />
   </ul>
 )
 
