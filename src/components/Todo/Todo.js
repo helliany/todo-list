@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 import "./Todo.scss";
@@ -10,29 +11,34 @@ const propTypes = {
 }
 
 const Todo = ({ todos, doneTodo, deleteTodo }) => (
-  todos.map(todo => (
-    <li
-      className="todo"
-      id={todo.id}
-      key={todo.id}
-    >
-      {todo.value}
-      <button
-        className="todo-btn-done"
-        onClick={doneTodo}
+  todos.map(todo => {
+    const className = todo.done 
+    ? cx('todo', 'todo-done')
+    : cx('todo');
+    return (
+      <li
+        className={className}
         id={todo.id}
+        key={todo.id}
       >
-        done
+        {todo.value}
+        <button
+          className="todo-btn-done"
+          onClick={doneTodo}
+          id={todo.id}
+        >
+          done
       </button>
-      <button
-        className="todo-btn-delete"
-        onClick={deleteTodo}
-        id={todo.id}
-      >
-        delete
+        <button
+          className="todo-btn-delete"
+          onClick={deleteTodo}
+          id={todo.id}
+        >
+          delete
       </button>
-    </li>
-  )
+      </li>
+    )
+  }
   )
 )
 
