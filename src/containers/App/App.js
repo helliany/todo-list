@@ -10,9 +10,18 @@ import Filter from '../../components/Filter/Filter';
 import './App.scss';
 
 const TODO_FILTERS = [
-  { value: 'all' },
-  { value: 'active' },
-  { value: 'done' },
+  {
+    label: 'all',
+    value: 'all'
+  },
+  {
+    label: 'active',
+    value: 'active'
+  },
+  {
+    label: 'done',
+    value: 'done'
+  }
 ];
 
 class App extends Component {
@@ -23,13 +32,9 @@ class App extends Component {
     filterValue: 'all'
   }
 
-  onInputValueChange = evt => {
-    this.setState({ value: evt.target.value });
-  }
+  onInputValueChange = evt => this.setState({ value: evt.target.value });
 
-  onInput = evt => {
-    this.setState({ isBtnDisabled: !evt.target.value.length > 0 });
-  }
+  onInput = evt => this.setState({ isBtnDisabled: !evt.target.value.length > 0 });
 
   onInputEnterPress = evt => {
     if (evt.key === 'Enter' && evt.target.value.length > 0) {
@@ -37,9 +42,7 @@ class App extends Component {
     }
   }
 
-  setFilter = evt => {
-    this.setState({ filterValue: evt.target.value });
-  }
+  setFilter = evt => this.setState({ filterValue: evt.target.value });
 
   addTodo = () => {
     const { value, todos } = this.state;

@@ -1,25 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import "./RadioButton.scss";
+
 const propTypes = {
   value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   onFilterButtonChange: PropTypes.func.isRequired
 }
 
-const FilterButton = ({ value, onFilterButtonChange }) => (
+const RadioButton = ({ value, label, onFilterButtonChange }) => (
   <React.Fragment>
     <input
-      className="filter-input"
+      className="radio-btn"
       type="radio"
-      name="filter"
+      name="radio"
       value={value}
       id={value}
       onChange={onFilterButtonChange}
     />
-    <label className="filter-label" htmlFor={value}>{value}</label>
+    <label className="radio-label" htmlFor={value}>{label}</label>
   </React.Fragment>
 );
 
-FilterButton.propTypes = propTypes;
+RadioButton.propTypes = propTypes;
 
-export default FilterButton;
+export default RadioButton;

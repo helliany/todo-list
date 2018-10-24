@@ -1,0 +1,36 @@
+.radio-label {
+  min-width: 55px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgba(24, 255, 240, 0.5);
+  border-radius: 6px;
+  cursor: pointer; 
+  user-select: none;
+}
+  
+.radio-btn {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+
+
+  &:hover + .radio-label,
+  &:focus + .radio-label {
+    background-color: rgba(24, 255, 240, 1);
+  }
+
+  &:active + .radio-label {
+    background-color: rgb(16, 152, 156);
+  }
+
+  &:checked + .radio-label {
+    color: #ffffff;
+    background-color: rgb(11, 86, 88);
+  }
+}

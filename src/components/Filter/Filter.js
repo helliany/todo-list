@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 
-import FilterButton from './FilterButton';
+import RadioButton from '../RadioButton/RadioButton';
 
 import "./Filter.scss";
 
 const propTypes = {
   todoFilters: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string
+    value: PropTypes.string,
+    label: PropTypes.string
   })).isRequired,
   onFilterButtonChange: PropTypes.func.isRequired 
 }
@@ -17,9 +17,10 @@ const Filter = ({ todoFilters, onFilterButtonChange }) => (
   <div className="filter">
     {
       todoFilters.map((filter) => (
-        <FilterButton
+        <RadioButton
           value={filter.value}
-          key={uuid()}
+          key={filter.value}
+          label={filter.label}
           onFilterButtonChange = {onFilterButtonChange}
         />
       ))
