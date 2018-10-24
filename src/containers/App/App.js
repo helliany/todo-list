@@ -9,14 +9,21 @@ import Filter from '../../components/Filter/Filter';
 
 import './App.scss';
 
+const TODO_FILTERS = [
+  { value: 'all' },
+  { value: 'active' },
+  { value: 'done' },
+];
+
 class App extends Component {
   state = {
     isBtnDisabled: true,
     value: '',
-    todos: []
+    todos: [],
+    filterValue: 'all'
   }
 
-  onInputChange = evt => {
+  onInputValueChange = evt => {
     this.setState({ value: evt.target.value });
   }
 
@@ -24,10 +31,14 @@ class App extends Component {
     this.setState({ isBtnDisabled: !evt.target.value.length > 0 });
   }
 
-  onEnterPress = evt => {
+  onInputEnterPress = evt => {
     if (evt.key === 'Enter' && evt.target.value.length > 0) {
       this.addTodo();
     }
+  }
+
+  setFilter = evt => {
+    this.setState({ filterValue: evt.target.value });
   }
 
   addTodo = () => {
@@ -57,23 +68,32 @@ class App extends Component {
 
   doneTodo = evt => {
     const { todos } = this.state;
-    this.setState({ todos: todos.map(todo => (todo.id === evt.target.id ? { ...todo, done: !todo.done } : todo)) });
+    this.setState({
+      todos: todos.map(todo => (todo.id === evt.target.id
+        ? { ...todo, done: !todo.done }
+        : todo))
+    });
   }
 
   render() {
-    const { isBtnDisabled, value, todos } = this.state;
+    const { isBtnDisabled, value, todos, filterValue } = this.state;
     return (
       <div className="app">
         <Label />
         <Input
           value={value}
           onInput={this.onInput}
-          onInputChange={this.onInputChange}
-          onEnterPress={this.onEnterPress}
+          onInputChange={this.onInputValueChange}
+          onEnterPress={this.onInputEnterPress}
         />
         <Button disabled={isBtnDisabled} onBtnClick={this.addTodo} />
-        <Filter />
-        <TodoList todos={todos} doneTodo={this.doneTodo} deleteTodo={this.deleteTodo} />
+        <Filter todoFilters={TODO_FILTERS} onFilterButtonChange={this.setFilter} />
+        <TodoList
+          todos={todos}
+          doneTodo={this.doneTodo}
+          deleteTodo={this.deleteTodo}
+          filterValue={filterValue}
+        />
       </div>
     );
   }

@@ -5,16 +5,21 @@ import PropTypes from 'prop-types';
 import "./Todo.scss";
 
 const propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string,
+    id: PropTypes.string,
+    done: PropTypes.bool
+  })).isRequired,
   doneTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired
 }
 
 const Todo = ({ todos, doneTodo, deleteTodo }) => (
   todos.map(todo => {
-    const className = todo.done 
-    ? cx('todo', 'todo-done')
-    : cx('todo');
+    const className = todo.done
+      ? cx('todo', 'todo-done')
+      : cx('todo');
+      
     return (
       <li
         className={className}
@@ -28,7 +33,7 @@ const Todo = ({ todos, doneTodo, deleteTodo }) => (
           id={todo.id}
         >
           done
-      </button>
+        </button>
         <button
           className="todo-btn-delete"
           onClick={deleteTodo}
@@ -38,8 +43,7 @@ const Todo = ({ todos, doneTodo, deleteTodo }) => (
       </button>
       </li>
     )
-  }
-  )
+  })
 )
 
 Todo.propTypes = propTypes;
